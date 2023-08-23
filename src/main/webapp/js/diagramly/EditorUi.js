@@ -13579,7 +13579,7 @@
 			// On smaller screens this is set to 0
 			if (size == 0)
 			{
-				size = 134;
+				size = 212;
 			}
 
 			var x = this.hsplitPosition;
