@@ -5144,6 +5144,11 @@ EditorUi.prototype.createStatusContainer = function()
  */
 EditorUi.prototype.setStatusText = function(value)
 {
+	if(this.statusContainer == null)
+	{
+		return;
+	}
+
 	this.statusContainer.innerHTML = Graph.sanitizeHtml(value);
 
 	// Wraps simple status messages in a div for styling
@@ -6508,13 +6513,14 @@ EditorUi.prototype.createKeyHandler = function(editor)
 		keyHandler.bindAction(48, true, 'customZoom'); // Ctrl+0
 		keyHandler.bindAction(82, true, 'turn'); // Ctrl+R
 		keyHandler.bindAction(82, true, 'clearDefaultStyle', true); // Ctrl+Shift+R
-		// keyHandler.bindAction(83, true, 'save'); // Ctrl+S
-		// keyHandler.bindAction(83, true, 'saveAs', true); // Ctrl+Shift+S
+		keyHandler.bindAction(83, true, 'save'); // Ctrl+S
+		keyHandler.bindAction(83, true, 'saveAs', true); // Ctrl+Shift+S
 		keyHandler.bindAction(65, true, 'selectAll'); // Ctrl+A
 		keyHandler.bindAction(65, true, 'selectNone', true); // Ctrl+A
 		keyHandler.bindAction(73, true, 'selectVertices', true); // Ctrl+Shift+I
 		keyHandler.bindAction(69, true, 'selectEdges', true); // Ctrl+Shift+E
-		keyHandler.bindAction(69, true, 'editStyle'); // Ctrl+E
+		// keyHandler.bindAction(69, true, 'editStyle'); // Ctrl+E
+		keyHandler.bindAction(69, true, 'readWrite'); // Ctrl+E
 		keyHandler.bindAction(66, true, 'bold'); // Ctrl+B
 		keyHandler.bindAction(66, true, 'toBack', true); // Ctrl+Shift+B
 		keyHandler.bindAction(70, true, 'toFront', true); // Ctrl+Shift+F

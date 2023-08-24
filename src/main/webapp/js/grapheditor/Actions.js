@@ -583,6 +583,32 @@ Actions.prototype.init = function()
 			}
 		}
 	}, null, null, Editor.ctrlKey + '+L');
+	this.addAction('readWrite', function()
+	{
+		graph.getModel().beginUpdate();
+		try
+		{
+			graph.selectAll();
+			var cells = graph.getSelectionCells();
+			var style = graph.getCurrentCellStyle(graph.getSelectionCell());
+			var value = (mxUtils.getValue(style, mxConstants.STYLE_EDITABLE, 1)) == 1 ? 0 : 1;
+			graph.setCellStyles(mxConstants.STYLE_MOVABLE, value, cells);
+			graph.setCellStyles(mxConstants.STYLE_RESIZABLE, value, cells);
+			graph.setCellStyles(mxConstants.STYLE_ROTATABLE, value, cells);
+			graph.setCellStyles(mxConstants.STYLE_DELETABLE, value, cells);
+			graph.setCellStyles(mxConstants.STYLE_EDITABLE, value, cells);
+			graph.setCellStyles('locked', (value == 1) ? 0 : 1, cells);
+			graph.setCellStyles('connectable', value, cells);
+			graph.clearSelection();
+			graph.setGridEnabled(value == 1);
+			graph.defaultGridEnabled = graph.isGridEnabled();
+			ui.fireEvent(new mxEventObject('gridEnabledChanged'));
+		}
+		finally
+		{
+			graph.getModel().endUpdate();
+		}
+	}, null, null, Editor.ctrlKey + '+E');
 
 	// Navigation actions
 	this.addAction('home', function() { graph.home(); }, null, null, 'Shift+Home');
