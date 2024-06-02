@@ -6490,8 +6490,8 @@ EditorUi.prototype.createKeyHandler = function(editor)
 	keyHandler.bindControlShiftKey(35, function() { graph.enterGroup(); }); // Ctrl+Shift+End
 	keyHandler.bindShiftKey(36, function() { graph.home(); }); // Ctrl+Shift+Home
 	keyHandler.bindKey(35, function() { graph.refresh(); }); // End
-	keyHandler.bindAction(107, true, 'zoomIn'); // Ctrl+Plus
-	keyHandler.bindAction(109, true, 'zoomOut'); // Ctrl+Minus
+	keyHandler.bindAction(221, true, 'zoomIn'); // Ctrl+Plus  修改为 Ctrl+}
+	keyHandler.bindAction(219, true, 'zoomOut'); // Ctrl+Minus  修改为 Ctrl+{}
 	keyHandler.bindAction(80, true, 'print'); // Ctrl+P
 	
 	if (!this.editor.chromeless || this.editor.editable)
